@@ -17,6 +17,8 @@ class PWS_FAQ_IndexController extends Mage_Core_Controller_Front_Action
    		        
         $articleId = (int) $this->getRequest()->getParam('article_id');
         $article = Mage::getModel('pws_faq/articles')->load($articleId);
+		
+		//throw new Exception(print_r($article->getData(), true));
         
                
         if (!$article->getArticleId() || $article->isNotAllowed()){

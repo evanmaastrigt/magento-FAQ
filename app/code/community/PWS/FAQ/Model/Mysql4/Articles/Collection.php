@@ -48,22 +48,18 @@ class PWS_FAQ_Model_Mysql4_Articles_Collection extends Mage_Core_Model_Mysql4_Co
     
     private function joinLeftCategory($category_id)
     {               
-        $this->getSelect()->joinLeft(
-            		array('categories_articles' => $this->getTable('pws_faq/categoriesArticles')),
-            		'`main_table`.`article_id`=`categories_articles`.`article_id` AND `categories_articles`.`category_id`='.(int)$category_id,
-            		array('position')
-        		);
+        $this->getSelect()->joinLeft(array('categories_articles' => $this->getTable('pws_faq/categoriesArticles')),
+									 '`main_table`.`article_id`=`categories_articles`.`article_id` AND `categories_articles`.`category_id`='.(int)$category_id,
+									 array('position'));
 
         return $this;
     }
     
     private function joinCategory($category_id)
     {               
-        $this->getSelect()->join(
-            array('categories_articles' => $this->getTable('pws_faq/categoriesArticles')),
-            		'`main_table`.`article_id`=`categories_articles`.`article_id` AND `categories_articles`.`category_id`='.(int)$category_id,
-            		array('position')
-        );
+        $this->getSelect()->join(array('categories_articles' => $this->getTable('pws_faq/categoriesArticles')),
+								 '`main_table`.`article_id`=`categories_articles`.`article_id` AND `categories_articles`.`category_id`='.(int)$category_id,
+								 array('position'));
 
         return $this;
     }
@@ -105,18 +101,18 @@ class PWS_FAQ_Model_Mysql4_Articles_Collection extends Mage_Core_Model_Mysql4_Co
                    array('')
                 )
                 ->from("",array(
-                            'title_default' => "article_default_store_table.title",
+							'title_default' => "article_default_store_table.title",
                             'title_store' => "article_store_table.title",
                             'title' => new Zend_Db_Expr('IF(article_store_table.title IS NULL || article_store_table.use_default = 1, 
                                                             article_default_store_table.title, 
                                                             article_store_table.title)'),
-                            'content_default' => "article_default_store_table.content",
-                            'content_store' => "article_store_table.content",
-                            'content' => new Zend_Db_Expr('IF(article_store_table.content IS NULL || article_store_table.use_default = 1, 
-                                                                article_default_store_table.content, 
-                                                                article_store_table.content)'),
-                            'updated_default' => "article_default_store_table.content",
-                            'updated_store' => "article_store_table.content",
+                            'content_default' => "article_default_store_table.faq_content",
+                            'content_store' => "article_store_table.faq_content",
+                            'content' => new Zend_Db_Expr('IF(article_store_table.faq_content IS NULL || article_store_table.use_default = 1, 
+                                                                article_default_store_table.faq_content, 
+                                                                article_store_table.faq_content)'),
+                            'updated_default' => "article_default_store_table.faq_content",
+                            'updated_store' => "article_store_table.faq_content",
                             'updated_on' => new Zend_Db_Expr('IFNULL(article_store_table.updated_on,article_default_store_table.updated_on)')
                             )
             );
@@ -130,7 +126,7 @@ class PWS_FAQ_Model_Mysql4_Articles_Collection extends Mage_Core_Model_Mysql4_Co
                 )               
                 ->from("",array(
                             'title' => "article_default_store_table.title",
-                            'content' => "article_default_store_table.content",
+                            'content' => "article_default_store_table.faq_content",
                             'views' => "article_default_store_table.views",
                             'updated_on' => "article_default_store_table.updated_on",
                             )

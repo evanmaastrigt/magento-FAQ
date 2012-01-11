@@ -21,6 +21,7 @@ class PWS_FAQ_Adminhtml_FaqArticlesController extends Mage_Adminhtml_Controller_
         $faqArticle->load($articleId); 
         
         if (Mage::getSingleton('adminhtml/session')->getFaqArticleData()) {
+			//die();
             $faqArticle->setData(Mage::getSingleton('adminhtml/session')->getFaqArticleData());
             Mage::getSingleton('adminhtml/session')->setFaqArticleData(false);
         }
@@ -56,7 +57,7 @@ class PWS_FAQ_Adminhtml_FaqArticlesController extends Mage_Adminhtml_Controller_
                 
                 $faq_article_data['use_default'] = isset($faq_article_data['use_default'])? 1 : 0;
                 $faqArticlesModel->setTitle($faq_article_data['title'])
-                      ->setContent($faq_article_data['content'])
+                      ->setFaqContent($faq_article_data['faq_content'])
                       ->setId($this->getRequest()->getParam('id'))
                       ->setStatus($faq_article_data['status'])
                       ->setUseDefault($faq_article_data['use_default']);               

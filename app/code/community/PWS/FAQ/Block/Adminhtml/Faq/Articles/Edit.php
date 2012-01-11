@@ -19,10 +19,10 @@ class PWS_FAQ_Block_Adminhtml_Faq_Articles_Edit extends Mage_Adminhtml_Block_Wid
         $this->_formScripts[] = "
             function toggleEditor() {
                 console.log('toggleEditor');
-                if (tinyMCE.getInstanceById('content') == null) {
-                    tinyMCE.execCommand('mceAddControl', false, 'content');
+                if (tinyMCE.getInstanceById('faq_content') == null) {
+                    tinyMCE.execCommand('mceAddControl', false, 'short_content');
                 } else {
-                    tinyMCE.execCommand('mceRemoveControl', false, 'content');
+                    tinyMCE.execCommand('mceRemoveControl', false, 'short_content');
                 }
             }
 
@@ -52,6 +52,11 @@ class PWS_FAQ_Block_Adminhtml_Faq_Articles_Edit extends Mage_Adminhtml_Block_Wid
         if ($this->_blockGroup && $this->_controller && $this->_mode) {
             $this->setChild('form', $this->getLayout()->createBlock('pws_faq/adminhtml_faq_articles_edit_form'));
         }
+        
+        if (Mage::getSingleton('cms/wysiwyg_config')->isEnabled() && ($block = $this->getLayout()->getBlock('head'))) {
+            $block->setCanLoadTinyMce(true);
+        }
+        
         return parent::_prepareLayout();
     }
 }

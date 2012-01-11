@@ -2,7 +2,7 @@
 <config>
     <modules>
         <PWS_FAQ>
-            <version>0.1.2</version>
+            <version>0.1.3</version>
         </PWS_FAQ>
     </modules>        
     <frontend>
@@ -55,12 +55,12 @@
             </modules>
         </translate>
    		<layout>
-			<updates>
-				<pws_faq>
-					<file>pws_faq.xml</file>
-				</pws_faq>
-			</updates>
-		</layout>
+            <updates>
+                <pws_faq>
+                    <file>pws_faq.xml</file>
+                </pws_faq>
+            </updates>
+        </layout>
         <menu>
             <cms>
                 <children>

@@ -30,7 +30,7 @@ class PWS_FAQ_Model_Mysql4_Articles extends Mage_Core_Model_Mysql4_Abstract
         $storeArray['store_id'] = $object->getData('store_id');
         $storeArray['article_id'] = $object->getData('article_id');
         $storeArray['title'] = $object->getData('title');
-        $storeArray['content'] = $object->getData('content'); 
+        $storeArray['faq_content'] = $object->getData('faq_content'); 
         $storeArray['use_default'] = $object->getData('use_default');
         
         if ($object->getData('views')) {
@@ -82,7 +82,7 @@ class PWS_FAQ_Model_Mysql4_Articles extends Mage_Core_Model_Mysql4_Abstract
 
         if ($data = $this->_getReadAdapter()->fetchRow($select)) {
             $object->setData('title', $data['title']);
-            $object->setData('content', $data['content']);
+            $object->setData('faq_content', $data['faq_content']);
             $object->setData('updated_on', $data['updated_on']);
             $object->setData('views', $data['views']);
             $object->setData('use_default', $data['use_default']);
@@ -97,7 +97,7 @@ class PWS_FAQ_Model_Mysql4_Articles extends Mage_Core_Model_Mysql4_Abstract
 
             if ($data = $this->_getReadAdapter()->fetchRow($select)) {
                 $object->setData('title', $data['title']);
-                $object->setData('content', $data['content']);
+                $object->setData('faq_content', $data['faq_content']);
                 $object->setData('updated_on', $data['updated_on']);
                 $object->setData('use_default', $data['use_default']);
             } 

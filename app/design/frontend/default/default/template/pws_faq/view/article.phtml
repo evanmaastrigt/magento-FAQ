@@ -6,7 +6,11 @@
 
 <div class="page-content">
 	<div class="faq-article-content">
-	<?php echo $article->getContent(); ?>
+	<?php
+		$helper = Mage::helper('cms');
+		$processor = $helper->getPageTemplateProcessor();
+		echo $processor->filter($article->getFaqContent());
+	?>
 	</div>
 	
 	<p><small><?php echo $this->__('Last Updated: ') ?><?php echo $this->formatDate($article->getUpdatedOn(),'medium',true) ?></small></p>

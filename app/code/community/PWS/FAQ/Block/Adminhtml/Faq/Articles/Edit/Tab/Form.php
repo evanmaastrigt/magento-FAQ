@@ -24,8 +24,34 @@ class PWS_FAQ_Block_Adminhtml_Faq_Articles_Edit_Tab_Form extends Mage_Adminhtml_
             'required'  => true,
             'class' => 'use_default',
             'note' => Mage::helper('pws_faq')->__('scope: [STORE VIEW]'),
-        )); 
-        
+        ));	
+		
+		try{
+            $config = Mage::getSingleton('cms/wysiwyg_config')->getConfig();
+            /*
+			$config->setData(Mage::helper('blog')->recursiveReplace(
+                        '/blog_admin/',
+                        '/'.(string)Mage::app()->getConfig()->getNode('admin/routers/adminhtml/args/frontName').'/',
+                        $config->getData()
+                    )
+                );
+			*/
+        }
+        catch (Exception $ex){
+            $config = null;
+        }
+		
+
+		$fieldset->addField('faq_content', 'editor', array(
+							'name'      => 'faq_article[faq_content]',
+							'label'     => Mage::helper('pws_faq')->__('Content'),
+							'title'     => Mage::helper('pws_faq')->__('Content'),
+							'style'     => 'width:800px; height:400px;',
+							'config'    => $config,
+							'note' => Mage::helper('pws_faq')->__('scope: [STORE VIEW]'),
+			));	
+		
+		/*
         $fieldset->addField('content', 'editor', array(
             'name'      => 'faq_article[content]',
             'label'     => Mage::helper('pws_faq')->__('Content'),
@@ -35,7 +61,9 @@ class PWS_FAQ_Block_Adminhtml_Faq_Articles_Edit_Tab_Form extends Mage_Adminhtml_
             'class' => 'use_default',
             'note' => Mage::helper('pws_faq')->__('scope: [STORE VIEW]'),
         ));
-        
+		*/
+		
+		
         if (Mage::registry('store_id') && Mage::registry('store_id') !=0 ) {		      
             $useDefault = $fieldset->addField('use_default', 'checkbox', array(
                 'name'      => 'faq_article[use_default]',

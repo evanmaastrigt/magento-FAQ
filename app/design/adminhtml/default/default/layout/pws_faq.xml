@@ -3,7 +3,8 @@
 	
 	<default>
 		<reference name="head">
-			<action method="setCanLoadExtJs"><flag>1</flag></action>
+			<update handle="editor" />
+			<action method="setCanLoadExtJs"><flag>1</flag></action>			
 			<action method="addJs"><script>mage/adminhtml/variables.js</script></action>
 			<action method="addJs"><script>mage/adminhtml/wysiwyg/widget.js</script></action>
 			<action method="addJs"><script>lib/flex.js</script></action>
@@ -12,7 +13,7 @@
 			<action method="addJs"><script>mage/adminhtml/browser.js</script></action>
 			<action method="addJs"><script>prototype/window.js</script></action>
 			<action method="addItem"><type>js_css</type><name>prototype/windows/themes/default.css</name></action>
-			<action method="addItem"><type>js_css</type><name>prototype/windows/themes/magento.css</name></action>
+			<action method="addItem"><type>js_css</type><name>prototype/windows/themes/magento.css</name></action>		
 		</reference>
 	</default> 
 </layout>

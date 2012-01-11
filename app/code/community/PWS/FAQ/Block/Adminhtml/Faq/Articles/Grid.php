@@ -13,7 +13,7 @@ class PWS_FAQ_Block_Adminhtml_Faq_Articles_Grid extends Mage_Adminhtml_Block_Wid
 
     protected function _prepareCollection()
     { 
-        $storeId = $this->getRequest()->getParam('store', 0);
+        $storeId = $this->getRequest()->getParam('store', 1);
         
         $collection = Mage::getModel('pws_faq/articles')->setStoreId($storeId)
             ->getCollection(); 
@@ -25,10 +25,17 @@ class PWS_FAQ_Block_Adminhtml_Faq_Articles_Grid extends Mage_Adminhtml_Block_Wid
     protected function _prepareColumns()
     {
         $this->addColumn('article_id', array(
-            'header'    => Mage::helper('pws_faq')->__('ID'),
+            'header'    => Mage::helper('pws_faq')->__('article_id'),
             'align'     =>'right',
             'width'     => '50px',
             'index'     => 'article_id',
+        ));
+        
+        $this->addColumn('store_id', array(
+            'header'    => Mage::helper('pws_faq')->__('store_id'),
+            'align'     =>'right',
+            'width'     => '50px',
+            'index'     => 'store_id',
         ));
 
         $this->addColumn('title', array(
@@ -62,7 +69,7 @@ class PWS_FAQ_Block_Adminhtml_Faq_Articles_Grid extends Mage_Adminhtml_Block_Wid
 
     public function getRowUrl($row)
     {
-        return $this->getUrl('*/*/edit', array('id' => $row->getId(), 'store' => $this->getRequest()->getParam('store', 0)));
+        return $this->getUrl('*/*/edit', array('id' => $row->getId(), 'store' => $this->getRequest()->getParam('store', 1)));
     }
     
    
